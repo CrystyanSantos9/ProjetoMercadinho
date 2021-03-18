@@ -7,29 +7,37 @@
     <meta charset="utf-8" />
   </head>
   <body>
-    <h1 title="<%=title %>"><%=title %></h1>
-    <p>Preencha os dados abaixo para salvar o cliente.</p>
+    <h1><%=title %></h1>
+
+    <% if(errors){ %>
+      <% errors.forEach(function(error){%>
+        <!--linha de erros  -->
+          <div class="error"><%=error.texto %></div>
+        <!--fim linha de erros -->
+      <%}); %>
+    <% } else{ %>  
+    <% } %>
     
-    <p><%=action %></p>
+    <!-- <p><%=action %></p> -->
     <form action="<%=action %>" method="POST">
         
       <p>
-            <label>Código: <input type="text" name="codigo" value="<%=user.funcionario_codigo %>" required/></label>
+            <label>Código: <input type="text" name="codigo" value="<%=user.funcionario_codigo %>" /></label>
       </p>
       <p>
-        <label>Nome: <input type="text" name="nome" value="<%=user.funcionario_nome %>" required/></label>
+        <label>Nome: <input type="text" name="nome" value="<%=user.funcionario_nome %>" /></label>
     </p>
     <p>
-        <label>Situação: <input type="text" name="situacao" value="<%=user.funcionario_situacao %>" required/></label>
+        <label>Situação: <input type="text" name="situacao" value="<%=user.funcionario_situacao %>" /></label>
     </p>
     <p>
-        <label>Comissão: <input type="text" name="comissao" value="<%=user.funcionario_comissao %>" required/></label>
+        <label>Comissão: <input type="text" name="comissao" value="<%=user.funcionario_comissao %>" /></label>
     </p>
     <p>
-        <label>Cargo: <input type="text" name="cargo" value="<%=user.funcionario_cargo %>" required/></label>
+        <label>Cargo: <input type="text" name="cargo" value="<%=user.funcionario_cargo %>" /></label>
     </p>
     <p>
-        <label>Data Criação: <input type="text" name="criacao" value="<%=user.data_criacao %>" required/></label>
+        <label>Data Criação: <input type="text" name="criacao" value="<%=user.to_char %>" /></label>
     </p>
       <!--Comandos-->
       <p>
@@ -37,5 +45,11 @@
       </p>
       <!--Fim comandos-->
   </form>
+  <script>
+  //   const salvar = document.querySelector("input[type='submit']")
+  //  salvar.addEventListener('click', (e)=>{
+  //    e.preventDefault()
+  //  })
+  </script>
   </body>
 </html>

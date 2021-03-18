@@ -42,15 +42,17 @@ async function selectUsers() {
     return res.rows;
 }
 
-// async function selectSells() {
-//     const client = await connect();
-//     const res = await client.query('SELECT * FROM vendas');
-//     return res.rows;
-// }
+async function selectSells() {
+    const client = await connect();
+    const res = await client.query('SELECT * FROM vendas');
+    return res.rows;
+}
 
 async function selectOneUser(id) {
     const client = await connect();
-    const sql = 'SELECT * FROM funcionarios WHERE id=$1';
+    const data_format =  'DD/MM/YYYY'
+    const sql = `SELECT id,funcionario_codigo,funcionario_nome,funcionario_situacao,funcionario_comissao,funcionario_cargo,  to_char("data_criacao",  'DD/MM/YYYY') , data_atualizacao FROM funcionarios WHERE id=$1`;
+    // const sql = 'SELECT * FROM funcionarios WHERE id=$1';
     const value = [id]
     const res = await client.query(sql, value);
     return res.rows;
@@ -91,4 +93,4 @@ async function deleteUser(id){
 
 
  
-module.exports = { selectUsers, insertUsers, updateUser, deleteUser, selectSales, selectOneUser}
+module.exports = { selectUsers, insertUsers, updateUser, deleteUser, selectSales, selectOneUser, selectSells}

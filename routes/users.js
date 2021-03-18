@@ -3,7 +3,6 @@ var router = express.Router();
 
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
-  // console.log('SELECT * FUNCIONARIOS');
   try {
     const users = await db.selectUsers();
     res.render('users', {users})
@@ -11,7 +10,8 @@ router.get('/', async function (req, res, next) {
     //   users
     // })
   } catch (e) {
-    return res.redirect('users/?erro='+e);
+    res.render('users', {users:""})
+    // return res.redirect('/users?erro='+e);
   }
 });
 
@@ -26,10 +26,12 @@ router.get('/edit/:id',async function (req, res, next) {
   const id = parseInt(req.params.id);
   try{
     const user = await db.selectOneUser(id);
+    console.log(user)
       res.render('new', {
       title: 'Edição de Funcionários',
       user: user[0],
-      action: '/users/edit/'+ id
+      action: '/users/edit/'+ id,
+      errors:""
     })
   }catch(e){
       return res.redirect('users/?erro='+e);
@@ -38,7 +40,7 @@ router.get('/edit/:id',async function (req, res, next) {
 
 //POST EDIT 
 router.post('/edit/:id', async function (req, res, next) {
-  const id = parseInt(req.params.id);
+  const id = parseInt(req.params.id,10);
   // console.log("Valor do id", id)
   const {codigo, nome, situacao, comissao,cargo,criacao} = req.body
   const dia = new Date().getDate()
@@ -132,15 +134,13 @@ res.redirect('/users?edit=true')
 //   }
 // })
 
-
-
 /* GET delete page. */
 router.get('/delete/:id',async function (req, res) {
-  const id  = parseInt(req.params.id)
+  const id  = parseInt(req.params.id,10)
   try{
     const result3 = await db.deleteUser(id);
     console.log(result3);
-    res.redirect('/users?delete=true')
+   return  res.redirect('/users?delete=true')
   }catch(e){
     return res.redirect('/users?erro='+e);
   }

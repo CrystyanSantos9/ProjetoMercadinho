@@ -1,0 +1,41 @@
+<!userTYPE html>
+<html lang="en-US">
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRUD de Funcionarios</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1 title="<%=title %>"><%=title %></h1>
+    <p>Preencha os dados abaixo para salvar o cliente.</p>
+    
+    <p><%=action %></p>
+    <form action="<%=action %>" method="POST">
+        
+      <p>
+            <label>Código: <input type="text" name="codigo" value="<%=user.funcionario_codigo %>" required/></label>
+      </p>
+      <p>
+        <label>Nome: <input type="text" name="nome" value="<%=user.funcionario_nome %>" required/></label>
+    </p>
+    <p>
+        <label>Situação: <input type="text" name="situacao" value="<%=user.funcionario_situacao %>" required/></label>
+    </p>
+    <p>
+        <label>Comissão: <input type="text" name="comissao" value="<%=user.funcionario_comissao %>" required/></label>
+    </p>
+    <p>
+        <label>Cargo: <input type="text" name="cargo" value="<%=user.funcionario_cargo %>" required/></label>
+    </p>
+    <p>
+        <label>Data Criação: <input type="text" name="criacao" value="<%=user.data_criacao %>" required/></label>
+    </p>
+      <!--Comandos-->
+      <p>
+          <a href="/users">Cancelar</a> | <input type="submit" value="Salvar" />
+      </p>
+      <!--Fim comandos-->
+  </form>
+  </body>
+</html>

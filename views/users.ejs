@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funcionários</title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1> Listagem de Funcionários</h1>
+    <p>Funcionários já cadastrados no sistema</p>
+    <table style="width:100%;">
+      <thead>
+        <tr style="background-color: #ccc;text-align: center;">
+          <td>Código</td>
+          <td>Nome</td>
+          <td>Situação</td>
+          <td>Comissão</td>
+          <td>Comissão</td>
+          <td >Data de Criação</td>
+          <td colspan="2">Ações</td>
+        </tr>
+      </thead>
+      <tbody>
+        <% if(!users || users.length==0){ %>
+
+          <tr>
+            <td colspan="4">Nenhum cliente cadastrado.</td>
+          </tr>
+
+      <% } else{ %>  
+
+        <% users.forEach(function(user){%>
+          <!--Linhas com dados -->
+          <tr >
+            <td ><%=user.funcionario_codigo %></td>
+            <td ><%=user.funcionario_nome %></td>
+            <td ><%=user.funcionario_situacao %></td>
+            <td ><%=user.funcionario_comissao %></td>
+            <td ><%=user.funcionario_cargo %></td>
+            <td ><%=user.data_criacao %></td>
+            <td><a href="users/edit/<%=user.id %>">Editar</a></td>
+            <td>
+              <a href="users/delete/ <%=user.id %>" onclick="return confirm('Tem certeza?');">Excluir</a>
+            </td>
+          </tr>
+          <!--Fim linhas com dados -->
+        <%}); %>
+
+      <% } %>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td cospan="4"><a href="/new">Cadastrar Novo</a></td>
+        </tr> <tr>
+            <td cospan="4"><a href="/">Voltar para Página Principal</a></td>
+          </tr>
+      </tfoot>
+    </table>
+    <script>
+      if(location.href.indexOf('delete=true')!=-1){
+        alert('Cliente excluído com sucesso!');
+      }
+      else if(location.href.indexOf('edit=true') !=-1){
+        alert('Cliente editado com sucesso!');
+      }
+      else if(location.href.indexOf('new=true') !=-1){
+        alert('Cliente cadastrado com sucesso!');
+      }
+      else if(location.href.indexOf('erro') !=-1){
+        alert('Ocorreu um erro!');
+      }
+
+    </script>
+  </body>
+</html>

@@ -4,16 +4,18 @@ var router = express.Router();
 /* GET users listing. */
 router.get('/', async function (req, res, next) {
   try {
-    const users = await db.selectUsers();
-    res.render('users', {users})
+  const users = await db.selectUsers();
+   return res.render('users', {users})
     // res.json({
     //   users
     // })
   } catch (e) {
+    console.log(e)
     res.render('users', {users:""})
     // return res.redirect('/users?erro='+e);
   }
 });
+
 
 // //para testar
 // (async () => {
@@ -57,7 +59,7 @@ try{
       criacao,
       atualizacao: data_atualizacao,
     });
-res.redirect('/users?edit=true')
+res.redirect('/users')
 }catch(e){
   return res.redirect('/users?erro='+e);
 }
@@ -142,6 +144,7 @@ router.get('/delete/:id',async function (req, res) {
     console.log(result3);
    return  res.redirect('/users?delete=true')
   }catch(e){
+    console.log(e)
     return res.redirect('/users?erro='+e);
   }
 })

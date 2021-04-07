@@ -1,7 +1,15 @@
-<% if (success_msg){ %>
+<% if (locals.success_msg){ %>
         <div>
         
                 <%= success_msg %>
+          
+        </div>  
+<%} %>
+
+<% if (locals.error_msg > 0){ %>
+        <div  class="alert alert-danger">
+        
+                <%= error_msg %>
           
         </div>  
 <%} %>

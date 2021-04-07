@@ -13,10 +13,9 @@ router.get('/', function(req, res, next) {
   // Set cookie -- enviando para navegador cliente
  res.cookie('cookieName', 'cookieValue', options) // options is optional
 //paralercokies
-console.log('Cookies', res.cookies)
+  console.log('Cookies', res.cookies)
   res.render('index', { title: 'Express' });
-
-
+  
 });
 
 module.exports = router;

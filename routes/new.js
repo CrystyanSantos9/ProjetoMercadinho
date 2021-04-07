@@ -45,7 +45,7 @@ router.get('/', function(req, res,next){
                             console.log("retorno", result)
                             req.flash("success_msg", "Funcionário criado com sucesso!")
                             // console.log(result.rowCount)
-                            res.redirect('/users?users=true');
+                            res.redirect('/users');
                     }catch(e){
                         req.flash("error_msg", "Ocorreu um erro ao tentar  criar o funcinário!")
                         return res.redirect('/new?erro='+e);
@@ -53,8 +53,4 @@ router.get('/', function(req, res,next){
                 }
     })
     
-
-
-
-
 module.exports = router;
